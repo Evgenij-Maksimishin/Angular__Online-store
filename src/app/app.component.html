@@ -1,0 +1,42 @@
+<!-- <app-product [productComp]="dataProduct[0]"></app-product>
+
+
+-->
+
+<app-test [formTest]="this.form.value" (clearFilterTest)="clearFilter()"></app-test>
+
+<div class="max-w-2xl container mx-auto pt-5 mt-[50px]" [formGroup]="form" >
+  <input 
+    type="text" 
+    class="mb-2 border py-2 px-4 w-full" 
+    placeholder="Filter products..."
+    [(ngModel)]="this.form.value.filterProducts1"
+    formControlName="filterProducts1"
+    
+  >
+  <button *ngIf="this.form.value.filterProducts1" (click)="clearFilter()">Clear Filter</button>
+  <div *ngIf="loading" style="text-align: center;">Loading...</div>
+  <div *ngIf="productsService.products">
+   
+    <app-global-error></app-global-error>
+
+    <app-product *ngFor="let elProd of productsService.products| filterProducts: this.form.value.filterProducts1" [productComp]="elProd"></app-product>
+
+    
+   
+  </div>
+
+  <app-modal *ngIf="modalService.isVisible$ | async" titleModal="Create new product">
+    <app-create-product></app-create-product>
+  </app-modal>
+
+  <button
+    class="rounded-full bg-red-700 text-white fixed right-5 bottom-5 py-2 px-4"
+    (click)="modalService.open()"
+  >+</button>
+</div>
+
+
+
+
+

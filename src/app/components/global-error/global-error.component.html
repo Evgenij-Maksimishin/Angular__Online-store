@@ -1,0 +1,12 @@
+<div 
+    style="position: relative; color: white; text-align: center; background: red; padding: 10px; font-weight: bold;"
+    *ngIf="errorService.error$ | async as error"
+    >
+    {{error}}
+</div>
+<button 
+    style="position: absolute; right: 15px; top: 10px; color: white;"
+    (click)="errorService.clear() "
+    >
+    &times;
+</button>

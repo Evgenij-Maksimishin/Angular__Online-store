@@ -1,0 +1,19 @@
+
+<div class="py-4 px-6 border rounded flex items-center flex-col mb-2">
+    <img [src]="productComp.image" [alt]="productComp.title" class="w-1/6 mb-2">
+    <h2 class="mb-2 text-md text-center">{{ productComp.title }}</h2>
+    <p>Price: <span class="font-bold">{{ productComp.price | currency:'RUB' }}</span></p>
+
+    <button 
+        [ngStyle]="{'background': details ? 'red' : 'green'}" 
+        (click)="details = !details"
+        >
+        {{details ? 'Hide':'Show'}} Details
+    </button>
+
+    <p *ngIf="details">{{productComp.description}}</p>
+    <p *ngIf="details">{{productComp.rating.rate}}</p>
+
+
+</div>
+
